@@ -1,2 +1,2 @@
-package PACKAGE_NAME;public class Day10_Product_Of_Array_Excepet_Self {
+public class Day10_Product_Of_Array_Excepet_Self {
 }
