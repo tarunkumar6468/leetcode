@@ -1,14 +1,27 @@
 import java.util.HashMap;
 
+
+/**Given an array of integers nums and an integer k.
+A continuous subarray is called nice if there are k odd numbers on it.
+
+Return the number of nice sub-arrays.
+ Example 1:
+
+Input: nums = [1,1,2,1,1], k = 3
+Output: 2
+Explanation: The only sub-arrays with 3 odd numbers are [1,1,2,1] and [1,2,1,1].**/
 public class Days_35_Count_Number_of_Nice_Subarrays {
     public static void main(String[] args){
         int arr[] = {1,1,2,1,1};
         int k = 3;
-//        int ans = CountNiceArray(arr,k);
-//        System.out.println(ans);
+        int ans = CountNiceArray(arr,k);
+        System.out.println(ans);
 
         int sAns = secondMethod1(arr,k);
         System.out.println(sAns);
+
+        int thirdAns =  thirdMethod(arr,k);
+        System.out.println(thirdAns);
     }
    public static int CountNiceArray(int []arr, int k){
         int count  = 0;
@@ -48,5 +61,23 @@ public class Days_35_Count_Number_of_Nice_Subarrays {
     }
     public static int secondMethod1(int[]arr, int k){
         return secondMethod(arr,k)-secondMethod(arr,k-1);
+    }
+
+    public static int thirdMethod(int[] arr, int k){
+        int count = 0;
+        for(int i = 0; i<arr.length; i++){
+            int oddCount = 0;
+           for(int j = i; j<arr.length; j++){
+               if(arr[j]%2!=0){
+                   oddCount++;
+               }
+               if(oddCount==k){
+                   count++;
+               }
+               else if(oddCount>k)break;
+
+           }
+        }
+        return count;
     }
 }
