@@ -15,19 +15,29 @@ public class Day1_bagOfTokens {
     }
     public static int bagOfTokensScore(int arr[] , int n, int p){
         int count = 0;
-        if(arr[0]>p)return 0;
+        int res=0;
         Arrays.sort(arr);
-        for(int i = 0; i<n;i++){
-            if(p<=arr[i]){
-                p-=arr[i];
-
+        int l = 0;
+        int r = n-1;
+        while(l<=r){
+            if(p>=arr[l]){
+                p-=arr[l];
+                l++;
                 count++;
+                res = Math.max(res,count);
             }
-            else if(count==1){
-                p = p + arr[n-1];
+            else if(count>0){
+                p = p + arr[r];
+                r--;
                 count--;
+
             }
+            else{
+                break;
+            }
+
         }
-        return count;
+        return res;
     }
 }
+
